@@ -70,5 +70,22 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        // Thinking Process
+        // use amount as a range to split data into 2 arrays
+        // combine the 2 split arrays into 1 in the correct order
+
+        List<int> list1 = new List<int>(data);
+        list1 = list1.GetRange(data.Count - amount, amount);
+        // if amount is 5 and data.Count is 9, starting from index 4, take 5 items
+        // take the last 5 items
+
+        List<int> list2 = new List<int>(data);
+        list2 = list2.GetRange(0, data.Count - amount);
+        // if amount is 5 and data.Count is 9, starting from index 0, take 4 items
+        // take the first 4 items
+
+        data.Clear();
+        data.AddRange(list1);
+        data.AddRange(list2);
     }
 }
