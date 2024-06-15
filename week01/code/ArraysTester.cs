@@ -39,7 +39,20 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        // Thinking process
+        // Starting with initializing a new double array
+        // use a for loop to add each number into the array
+        // array item 0 would be the starting number
+        // array item 1 would be 2 times of the starting number, etc
+        // return the array created in the end
+
+        double[] newArray = new double[length];
+
+        for(int i = 1; i <= length; i++) {
+            newArray[i - 1] = number * i; // newArray[0] = starting number * 1
+        }
+        
+        return newArray; // replace this return statement with your own
     }
     
     /// <summary>
