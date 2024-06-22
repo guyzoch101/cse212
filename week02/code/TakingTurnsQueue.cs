@@ -34,8 +34,11 @@ public class TakingTurnsQueue {
             Console.WriteLine("No one in the queue.");
         else {
             Person person = _people.Dequeue();
-            if (person.Turns > 1) {
+            if (person.Turns > 1) { // for players whose turns counted down, it will remain at 1 even he finished all turns
                 person.Turns -= 1;
+                _people.Enqueue(person);
+            }
+            else if (person.Turns == 0) { // for players who has forever turns
                 _people.Enqueue(person);
             }
 

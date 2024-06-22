@@ -15,7 +15,8 @@
         // Console.WriteLine(players);    // This can be un-commented out for debug help
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
+        // Defect(s) Found: PersonQueue Enqueue method: Insert(0, person) -> Add(person)
+        // should not add at 0 index position
 
         Console.WriteLine("---------");
 
@@ -38,7 +39,7 @@
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: none
 
         Console.WriteLine("---------");
 
@@ -56,24 +57,24 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: TakingTurnsQueue GetNexrPerson: added a condition where Turns = 0 -> keep enqueue the person
 
         Console.WriteLine("---------");
 
-         // Test 4
+        // Test 4
         // Scenario: Create a queue with the following people and turns: Tim (Forever), Sue (3)
         // Run 10 times.
         // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
         Console.WriteLine("Test 4");
         players = new TakingTurnsQueue();
-        players.AddPerson("Tim", -3);
+        players.AddPerson("Tim", 0);
         players.AddPerson("Sue", 3);
         // Console.WriteLine(players);
         for (int i = 0; i < 10; i++) {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: Tim should have 0 turns (forever)
 
         Console.WriteLine("---------");
 
@@ -83,6 +84,6 @@
         Console.WriteLine("Test 5");
         players = new TakingTurnsQueue();
         players.GetNextPerson();
-        // Defect(s) Found:
+        // Defect(s) Found: none
     }
 }
