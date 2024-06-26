@@ -65,5 +65,20 @@
         // Defect(s) Found: none
 
         Console.WriteLine("---------");
+
+        // Test 5
+        // Scenario: create a priority queue with the following persons(priority): Bob(3), Tim(3), Sue(9)
+        // highest priority at the end of the queue
+        // Expected Results: Sue
+        Console.WriteLine("Test 5");
+        var players5 = new PriorityQueue();
+        players5.Enqueue("Bob", 3);
+        players5.Enqueue("Tim", 3);
+        players5.Enqueue("Sue", 9);
+        Console.WriteLine(players5.Dequeue());
+        // Defect(s) Found: line 25 index < _queue.Count - 1 -> this excludes the last item
+        // change to index < _queue.Count
+
+        Console.WriteLine("---------");
     }
 }
