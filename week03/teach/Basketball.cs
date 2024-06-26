@@ -12,6 +12,7 @@
  */
 
 using Microsoft.VisualBasic.FileIO;
+using System.Linq;
 
 public class Basketball
 {
@@ -27,10 +28,36 @@ public class Basketball
             var fields = reader.ReadFields()!;
             var playerId = fields[0];
             var points = int.Parse(fields[8]);
+
+            if (players.ContainsKey(playerId)) {
+                players[playerId] += points; // if playerId already in players -> add the points for that player
+            }
+            else {
+                players[playerId] = points; // create new key if not in players
+            }
         }
 
-        Console.WriteLine($"Players: {{{string.Join(", ", players)}}}");
+        // Console.WriteLine($"Players: {{{string.Join(", ", players)}}}");
 
-        var topPlayers = new string[10];
+        // did not convert the map into an array -> but still returns a sorted array with top scorers
+        // var topPlayers = new string[10];
+
+        // for (int i = 0; i < 10; i++) {
+        //     int maxPoints = players.Values.Max(); // max points located
+        //     var maxPointsPair = players.First(kvp => kvp.Value == maxPoints); // retrieve the pair where the max points is
+        //     topPlayers[i] = maxPointsPair.ToString(); // add the pair into the topPlayers array
+        //     players[maxPointsPair.Key] = 0; // erase the top scorer and find the next highest scorer until i > 9
+        // }
+
+        // Console.WriteLine(string.Join(", ", topPlayers));
+
+        var topPlayers = players.ToArray();
+        Array.Sort(topPlayers, (p1, p2) => p2.Value - p1.Value);
+
+        Console.WriteLine();
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine(topPlayers[i]);
+        }
     }
 }
