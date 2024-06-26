@@ -38,7 +38,7 @@ public class TakingTurnsQueue {
                 person.Turns -= 1;
                 _people.Enqueue(person);
             }
-            else if (person.Turns == 0) { // for players who has forever turns
+            else if (person.Turns <= 0) { // for players who has forever turns
                 _people.Enqueue(person);
             }
 
