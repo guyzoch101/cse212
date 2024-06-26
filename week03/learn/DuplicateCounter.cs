@@ -25,20 +25,14 @@
     private static int CountDuplicates(int[] data)
     {
         int duplicatesCounter = 0;
-        var elementCounts = new Dictionary<int, int>();
+        var unique = new HashSet<int>();
 
-        foreach (var element in data) {
-            if (elementCounts.ContainsKey(element)) { // duplicate key -> value + 1 -> counting duplicates for that key
-                elementCounts[element]++;
-            }
-            else { // adds the key into the dictionary or non-duplicate value
-                elementCounts[element] = 1;
-            }
-        }
-
-        foreach (var kvp in elementCounts) {
-            if (kvp.Value > 1) { // adds up all the duplicates counted for each key, the sum of the values is the total number of duplicates
+        foreach (int i in data) {
+            if (unique.Contains(i)) { // counts duplicates
                 duplicatesCounter++;
+            }
+            else { // not in hashset means it is a new element
+                unique.Add(i);
             }
         }
 
