@@ -111,6 +111,24 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+
+        var wordSet = new HashSet<string>();
+
+        foreach (string word in words) {
+            if (wordSet.Contains(word)) {
+                break;
+            }
+
+            wordSet.Add(word); // add the word into the set if not duplicate
+
+            char[] characterArray = word.ToCharArray(); // convert into char array
+            Array.Reverse(characterArray); // reverse the order
+            string reversedWord = new string(characterArray); // initialize the reversed word string
+
+            if (wordSet.Contains(reversedWord)) { // check if that word added into the set has an pair in the set
+                Console.WriteLine($"{word} & {reversedWord}");
+            }
+        }
     }
 
     /// <summary>
