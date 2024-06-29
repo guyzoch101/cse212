@@ -152,11 +152,11 @@ public static class SetsAndMapsTester {
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
-            string degree = fields[3];
-            if (degrees.ContainsKey(degree)) {
+            string degree = fields[3]; // column 4 is the degree
+            if (degrees.ContainsKey(degree)) { // increment the value for that key if already in dictionary
                 degrees[degree]++;
             }
-            else {
+            else { // set the new key with a value of 1
                 degrees[degree] = 1;
             }
         }
