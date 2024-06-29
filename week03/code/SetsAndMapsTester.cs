@@ -185,7 +185,43 @@ public static class SetsAndMapsTester {
     /// #############
     private static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        var charDictionary1 = new Dictionary<char, int>();
+        var charDictionary2 = new Dictionary<char, int>();
+
+        foreach (char character in word1) { // stores all char and no. of appearances of word1
+            char lowerCaseChar = char.ToLower(character); // convert all char to lowercase
+
+            if (charDictionary1.ContainsKey(lowerCaseChar)) { // increment the value for that key if already in dictionary
+                charDictionary1[lowerCaseChar]++;
+            }
+            else if (lowerCaseChar != ' ') { // set the new key with a value of 1
+                charDictionary1[lowerCaseChar] = 1;
+            }
+
+        }
+
+        foreach (char character in word2) { // stores all char and no. of appearances of word2
+            char lowerCaseChar = char.ToLower(character);
+
+            if (charDictionary2.ContainsKey(lowerCaseChar)) { // increment the value for that key if already in dictionary
+                charDictionary2[lowerCaseChar]++;
+            }
+            else if (lowerCaseChar != ' ') { // set the new key with a value of 1
+                charDictionary2[lowerCaseChar] = 1;
+            }
+        }
+
+        foreach (var kvp in charDictionary1) {
+            if (!charDictionary2.ContainsKey(kvp.Key)) { // if key in dict1 not in dict2, false
+                return false;
+            }
+
+            if (charDictionary2[kvp.Key] != kvp.Value) { // if key in dict1 and dict2, but no. of appearance (value) not equal, false
+                return false;
+            }
+        }
+
+        return true; // only both the key and value matches, it will return true
     }
 
     /// <summary>
