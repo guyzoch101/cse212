@@ -129,6 +129,8 @@ public static class SetsAndMapsTester {
                 Console.WriteLine($"{word} & {reversedWord}");
             }
         }
+
+        // Only 1 loop, so the time is O(n)
     }
 
     /// <summary>
