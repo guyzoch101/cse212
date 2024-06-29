@@ -125,7 +125,7 @@ public static class SetsAndMapsTester {
             Array.Reverse(characterArray); // reverse the order
             string reversedWord = new string(characterArray); // initialize the reversed word string
 
-            if (wordSet.Contains(reversedWord)) { // check if that word added into the set has an pair in the set
+            if (wordSet.Contains(reversedWord) && characterArray[0] != characterArray[1]) { // check if that word added into the set has an pair in the set, and if the 2 char are the same
                 Console.WriteLine($"{word} & {reversedWord}");
             }
         }
