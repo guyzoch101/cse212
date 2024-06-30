@@ -10,23 +10,32 @@ namespace Intersection
             var set1 = new HashSet<int>() { 1, 3, 5, 7, 9, 11 };
             var set2 = new HashSet<int>() { 9, 11, 13, 15, 17, 19 };
 
-            // Convert HashSet<int> to arrays
-            int[] array1 = set1.ToArray();
-            int[] array2 = set2.ToArray();
+            var intersectionSet = new Dictionary<int, int>();
 
-            var intersectionSet = new HashSet<int>();
+            foreach (int i in set1) {
+                if (intersectionSet.ContainsKey(i)) {
+                    intersectionSet[i]++;
+                }
+                else {
+                    intersectionSet[i] = 1;
+                }
+            }
 
-            // Find intersection of array1 and array2
-            foreach (int i in array1) {
-                if (Array.IndexOf(array2, i) != -1) { // Check if i exists in array2
-                    intersectionSet.Add(i);
+            foreach (int j in set2) {
+                if (intersectionSet.ContainsKey(j)) {
+                    intersectionSet[j]++;
+                }
+                else {
+                    intersectionSet[j] = 1;
                 }
             }
 
             // Print the intersectionSet
             Console.WriteLine("Intersection Set:");
-            foreach (int num in intersectionSet) {
-                Console.WriteLine(num);
+            foreach (var kvp in intersectionSet) {
+                if (kvp.Value > 1) {
+                    Console.WriteLine(kvp.Key);
+                }
             }
         }
     }
