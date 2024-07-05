@@ -38,7 +38,7 @@ public class LinkedList : IEnumerable<int> {
         // IF the list is not empty, then only tail will be affected
         else {
             newNode.Prev = _tail; // connects the current tail to the front of the new node
-            _tail.Next = newNode; // sets the next node of the tail the new node
+            _tail!.Next = newNode; // sets the next node of the tail the new node
             _tail = newNode; // sets the new tail as the new node just created
         }
     }
@@ -120,6 +120,27 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void Remove(int value) {
         // TODO Problem 3
+        Node? curr = _head;
+        while (curr is not null) {
+            if (curr.Data == value) {
+                if (curr == _head) {
+                    RemoveHead();
+                }
+                else if (curr == _tail) {
+                    RemoveTail();
+                }
+                else {
+                    curr.Next!.Prev = curr.Prev;
+                    // for example nodes: 0, 1, 2, 3, 4 -> removing node 2
+                    // set the previous node of node 3 node 1
+                    curr.Prev!.Next = curr.Next;
+                    // set the next node of node 1 node 3
+                }
+
+                return; // exits the function if removed item
+            }
+            curr = curr.Next; // goes to the next node
+        }
     }
 
     /// <summary>
