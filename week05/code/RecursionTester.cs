@@ -147,7 +147,12 @@ public static class RecursionTester {
     /// </summary>
     public static int SumSquaresRecursive(int n) {
         // TODO Start Problem 1
-        return 0;
+        if (n <= 0) {
+            return 0;
+        }
+        else {
+            return n * n + SumSquaresRecursive(n - 1);
+        }
     }
 
     /// <summary>
@@ -171,6 +176,20 @@ public static class RecursionTester {
     /// </summary>
     public static void PermutationsChoose(string letters, int size, string word = "") {
         // TODO Start Problem 2
+        if (size == 0) {
+            Console.WriteLine(word); // display the permutation
+            return;
+        }
+        else {
+            for (int i = 0; i < letters.Length; i++) {
+                string remainingLetters = letters.Remove(i, 1); // create a string without the current letter
+                PermutationsChoose(remainingLetters, size - 1, word + letters[i]); // form a permutation with the current letter and other letters (depend on size)
+                // "ABC", size 2
+                // if "A" removed -> remaining "BC"
+                // word = "", + letters[i] = "A"
+                // consider "BC", take one of B or C -> form permutation
+            }
+        }
     }
 
     /// <summary>
