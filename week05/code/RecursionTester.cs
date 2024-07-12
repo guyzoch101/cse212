@@ -67,7 +67,7 @@ public static class RecursionTester {
         Console.WriteLine(CountWaysToClimb(20)); // 121415
         // Uncomment out the test below after implementing memoization.  It won't work without it.
         // TODO Problem 3
-        // Console.WriteLine(CountWaysToClimb(100));  // 180396380815100901214157639
+        Console.WriteLine(CountWaysToClimb(100));  // 180396380815100901214157639
 
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== PROBLEM 4 TESTS ===========");
@@ -238,18 +238,30 @@ public static class RecursionTester {
     /// until the memoization is implemented.
     /// </summary>
     public static decimal CountWaysToClimb(int s, Dictionary<int, decimal>? remember = null) {
+        if (remember == null) {
+            remember = new Dictionary<int, decimal>(); // create dictionary
+        }
         // Base Cases
-        if (s == 0)
+        if (s == 0) {
             return 0;
-        if (s == 1)
+        }
+        if (s == 1) {
             return 1;
-        if (s == 2)
+        }
+        if (s == 2) {
             return 2;
-        if (s == 3)
+        }
+        if (s == 3) {
             return 4;
+        }
+
+        if (remember.ContainsKey(s)) { // check if the s value has been solved before
+            return remember[s];
+        }
 
         // Solve using recursion
-        decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
+        decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
+        remember[s] = ways; // save the ways calculated of the s key
         return ways;
     }
 
