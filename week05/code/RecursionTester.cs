@@ -280,6 +280,22 @@ public static class RecursionTester {
     /// </summary>
     public static void WildcardBinary(string pattern) {
         // TODO Start Problem 4
+
+        // Base case: no wildcard char *
+        if (!pattern.Contains('*')) {
+            Console.WriteLine(pattern);
+            return;
+        }
+        else {
+            int wildcardIndex = pattern.IndexOf('*');
+            // replace * with 0
+            string zeroWildcardPattern = $"{pattern.Substring(0, wildcardIndex)}0{pattern.Substring(wildcardIndex + 1)}";
+            WildcardBinary(zeroWildcardPattern); // use the 0 version to call the function again for * in greater index positions until no more *, which goes to base case and end
+
+            // replace * with 1
+            string oneWildcardPattern = $"{pattern.Substring(0, wildcardIndex)}1{pattern.Substring(wildcardIndex + 1)}";
+            WildcardBinary(oneWildcardPattern); // use the 1 version to call the function again for * in greater index position until no more *, which goes to base case and end
+        }
     }
 
     /// <summary>
