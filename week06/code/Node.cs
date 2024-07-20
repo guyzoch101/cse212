@@ -48,6 +48,13 @@ public class Node {
 
     public int GetHeight() {
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        // recursively call GetHeight() until reaches a leaf node
+        int leftHeight = (Left != null) ? Left.GetHeight() : 0;
+        // check if current node is not null
+        // if not null, call GetHeight() for the left child
+        // if left child is null, leftHeight = 0
+        int rightHeight = (Right != null) ? Right.GetHeight() : 0;
+        return 1 + Math.Max(leftHeight, rightHeight); // Replace this line with the correct return statement(s)
+        // + 1 is for counting the current node
     }
 }
